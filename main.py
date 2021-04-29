@@ -7,10 +7,10 @@ def getWords():
     words = []
     for word in contents:
       words.append(word.strip())
-   # print(words)
     return words
 
 def getLetterGuess(used):
+  # This function gets the single character guess from the plr
   guess = input("Please type ONE character to guess: ")
   if len(guess) != 1 :
     print("Invalid input. Please enter only ONE character")
@@ -22,23 +22,24 @@ def getLetterGuess(used):
   return guess
 
 def fillInLetters(word,blanks,character):
+  # This function fills in the words based on the input
   pair = zip(word,blanks)
   new_word = ""
   
 
   for wc,bc in pair:
-    #print(wc,bc)
     if bc == "_" and wc == character:
-     # print("match")
       new_word += character
     else:
       new_word += bc
   return new_word
 
 def exists(character,word):
+  # checks if the character exists in the word
   return character in word
 
 def gameRound():
+  # Plays one whole round of Hangman until failure or success
   words = getWords()
 
   chosenword = words[random.randrange(0,len(words)-1)]
